@@ -14,10 +14,12 @@ class Observer:
     def update(self, u, y):
         if self.L is None:
             raise ValueError("Observer gains have not been computed.")
+        
         self.x_hat = self.x_hat + (self.A @ self.x_hat + self.B.flatten() * u - self.L @ (self.C @ self.x_hat - y)) * self.dt
         y_hat = self.C @ self.x_hat
         
         return self.x_hat, y_hat
+    
     # this function assign the poles to the observer specified in lambda_1 and lambda_2
     def ComputeObserverGains(self,lambda_1,lambda_2):
         # Compute the observer gain L

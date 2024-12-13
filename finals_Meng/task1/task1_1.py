@@ -12,8 +12,8 @@ R_a = 1.0     # Armature resistance (Ohm)
 L_a = 0.001   # Armature inductance (H)
 
 # Desired Eigenvalues for Observer
-lambda_1 = -500.0
-lambda_2 = -600.0
+lambda_1 = -5
+lambda_2 = -6
 
 # Simulation Parameters
 t_start = 0.0

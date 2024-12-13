@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from observer import Observer
 from dc_model import SysDyn
-from regulator_model import RegulatorModel
+from regulator_model_1_4 import RegulatorModel # Task 1.4 variant of regulator model with modelling uncertainties
 from scipy.linalg import solve_discrete_are, inv
 from numpy.linalg import matrix_rank
 

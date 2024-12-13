@@ -14,8 +14,8 @@ R_a = 1.0     # Armature resistance (Ohm)
 L_a = 0.001   # Armature inductance (H)
 
 # Desired Eigenvalues for Observer
-lambda_1 = -600.0
-lambda_2 = -800
+lambda_1 = -10
+lambda_2 = -15
 
 # Simulation Parameters
 t_start = 0.0
@@ -79,6 +79,7 @@ x_hat_cur = x_hat_init
 for k in range(num_steps):
     # Time stamp
     t = time[k]
+    print("Current time: ", t)
     
     # compute control input
     u_mpc = regulator.compute_solution(x_hat_cur)
