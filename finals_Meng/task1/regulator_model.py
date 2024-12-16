@@ -227,6 +227,8 @@ class RegulatorModel:
 
     # added function to compute constraints matrices
     def setConstraintsMatrices(self,B_in,B_out):
+        print(f"S_bar before regulator_G_std: {self.S_bar}")
+
 
         self.G = self.regulator_G_std(self.S_bar)
         self.S = self.regulator_S_std(self.T_bar)
@@ -238,10 +240,10 @@ class RegulatorModel:
         # Update the objective function based on the given equation
         def objective(z, x0_mpc,H,F, F_ref=None):
             if F_ref is not None:
-                F_full = F_ref + np.dot(F,x0_mpc)[:, np.newaxis]
-                return 0.5 * np.dot(z.T, np.dot(H, z)) +  np.dot(F_full.T, z)
+                F_full = F_ref - np.dot(F,x0_mpc)[:, np.newaxis]
+                return 0.5 * np.dot(z.T, np.dot(H, z)) -  np.dot(F_full.T, z)
             else:  
-                return 0.5 * np.dot(z.T, np.dot(H, z)) + np.dot(x0_mpc.T, np.dot(F.T, z))
+                return 0.5 * np.dot(z.T, np.dot(H, z)) - np.dot(x0_mpc.T, np.dot(F.T, z))
 
         if self.constr_flag:
             # Constraint function
